@@ -9,8 +9,9 @@ spec:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   storageClassName: ""
-  local:
+  hostPath:
     path: /var/lib/changedetection/data
+    type: DirectoryOrCreate
   nodeAffinity:
     required:
       nodeSelectorTerms:
