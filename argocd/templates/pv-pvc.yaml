@@ -1,27 +1,4 @@
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: changedetection-io-data-pv
-spec:
-  capacity:
-    storage: 1Gi
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: ""
-  hostPath:
-    path: /var/lib/changedetection/data
-    type: DirectoryOrCreate
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-        - matchExpressions:
-            - key: kubernetes.io/hostname
-              operator: In
-              values:
-                - w32
----
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: changedetection-io-data-pvc
@@ -32,5 +9,5 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  volumeName: changedetection-io-data-pv
-  storageClassName: ""
+  # Leave storageClassName unset to use the cluster default StorageClass
+  # storageClassName: "standard"
