@@ -35,6 +35,10 @@ changedetection-io:
       ENABLE_DEBUGGER: "false"
       DEFAULT_BLOCK_ADS: "true"
       DEFAULT_STEALTH: "true"
+      # Safer launch args to reduce crashes inside containers
+      DEFAULT_LAUNCH_ARGS: '["--no-sandbox","--disable-dev-shm-usage","--disable-gpu"]'
+      PREBOOT_CHROME: "true"
+      PREBOOT_QUANTITY: "2"
   env:
     TZ: UTC
     # Point changedetection main container to the browser sidecar's Playwright websocket endpoint
