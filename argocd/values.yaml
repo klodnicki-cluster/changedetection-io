@@ -17,14 +17,13 @@ changedetection-io:
   persistence:
     data:
       enabled: true
-      type: pvc
+      type: hostPath
+      hostPath: /var/lib/changedetection/data
+      hostPathType: DirectoryOrCreate
       mountPath: /datastore
       retain: true
-      # Requested size for the PVC (used for dynamic provisioning)
+      # size/accessMode/storageClass are ignored for hostPath but may be set if switching to PVC later
       size: 1Gi
-      accessMode: ReadWriteOnce
-      # Optional: specify storageClassName if your cluster requires it
-      # storageClassName: "standard"
   # Enable the browser sidecar for Javascript rendering (browserless)
   browserless:
     enabled: true
