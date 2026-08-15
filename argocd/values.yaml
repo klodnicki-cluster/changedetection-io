@@ -1,0 +1,23 @@
+changedetection-io:
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
+      hosts:
+        - host: changedetection.cluster.zack.klodnicki.com
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: changedetection.cluster.zack.klodnicki.com-tls
+          hosts:
+            - changedetection.cluster.zack.klodnicki.com
+  persistence:
+    data:
+      enabled: true
+      accessMode: ReadWriteOnce
+      size: 1Gi
+  env:
+    TZ: UTC

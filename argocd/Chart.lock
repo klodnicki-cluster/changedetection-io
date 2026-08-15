@@ -1,0 +1,6 @@
+dependencies:
+- name: changedetection-io
+  repository: https://charts.gabe565.com
+  version: 0.12.0
+digest: sha256:d00cdd9ff048d538559eafeb5c10c69a8499444d7c45d2e633853984b7b9b7ac
+generated: "2026-08-14T22:41:52.454967664-04:00"
