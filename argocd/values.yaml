@@ -17,12 +17,10 @@ changedetection-io:
   persistence:
     data:
       enabled: true
-      type: hostPath
-      hostPath: /var/lib/changedetection/data
-      hostPathType: DirectoryOrCreate
+      existingClaim: changedetection-io-data-pvc
       mountPath: /datastore
       retain: true
-      # size/accessMode/storageClass are ignored for hostPath but may be set if switching to PVC later
+      # size/accessMode/storageClass are set for reference; PVC binding is controlled by the existing PV
       size: 1Gi
   env:
     TZ: UTC
