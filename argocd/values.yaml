@@ -24,5 +24,18 @@ changedetection-io:
       retain: true
       # size/accessMode/storageClass are ignored for hostPath but may be set if switching to PVC later
       size: 1Gi
+  # Enable the browser sidecar for Javascript rendering (browserless)
+  browserless:
+    enabled: true
+    image:
+      repository: browserless/chrome
+      tag: latest
+      pullPolicy: Always
+    env:
+      ENABLE_DEBUGGER: "false"
+      DEFAULT_BLOCK_ADS: "true"
+      DEFAULT_STEALTH: "true"
   env:
     TZ: UTC
+    # Point changedetection main container to the browser sidecar's Playwright websocket endpoint
+    PLAYWRIGHT_DRIVER_URL: ws://localhost:3000
