@@ -17,7 +17,12 @@ changedetection-io:
   persistence:
     data:
       enabled: true
-      accessMode: ReadWriteOnce
+      type: hostPath
+      hostPath: /var/lib/changedetection/data
+      hostPathType: DirectoryOrCreate
+      mountPath: /datastore
+      retain: true
+      # size/accessMode/storageClass are ignored for hostPath but may be set if switching to PVC later
       size: 1Gi
   env:
     TZ: UTC
