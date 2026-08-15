@@ -1,0 +1,28 @@
+name: Helm validation
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  helm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: v3.16.4
+
+      - name: Update chart dependencies
+        run: helm dependency update ./argocd
+
+      - name: Lint chart
+        run: helm lint ./argocd --strict
+
+      - name: Render chart
+        run: helm template changedetection-io ./argocd --values ./argocd/values.yaml >/tmp/changedetection-rendered.yaml

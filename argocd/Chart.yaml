@@ -1,6 +1,8 @@
 apiVersion: v2
 name: changedetection-io
+type: application
 version: 0.1.0
+icon: https://raw.githubusercontent.com/dgtlmoon/changedetection.io/master/app/static/img/favicon.ico
 dependencies:
   - name: changedetection-io
     version: 0.12.0
